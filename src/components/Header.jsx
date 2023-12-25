@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { FaCartShopping } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import { IoMdHome } from "react-icons/io";
+import { useAuth } from "../context/AuthContext";
 function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
-
+  const { cartSize } = useAuth();
+  const userProfile = JSON.parse(localStorage.getItem("user"));
   const handleHamburger = () => {
     setIsOpen(!isOpen);
   };
@@ -45,7 +47,7 @@ function Header() {
                   }
                 >
                   <p className="absolute -top-4 right-3 font-semibold text-center">
-                    1
+                    {cartSize}
                   </p>
                   <FaCartShopping className="text-4xl" />
                 </NavLink>
@@ -59,7 +61,7 @@ function Header() {
                   }
                 >
                   <img
-                    src="/profile.png"
+                    src={userProfile?.image || "/profile.png"}
                     width={45}
                     alt=""
                     className="rounded-full bg-white border-2 border-gray-500 p-1"
@@ -99,7 +101,7 @@ function Header() {
                   <div className="">
                     <NavLink to="/profile">
                       <img
-                        src="/profile.png"
+                        src={userProfile?.image || "/profile.png"}
                         width={45}
                         alt=""
                         className="rounded-full bg-white border-2 border-gray-500 p-1"
@@ -115,7 +117,7 @@ function Header() {
                       }
                     >
                       <p className="absolute -top-4 right-3 font-semibold text-center">
-                        1
+                        {cartSize}
                       </p>
                       <FaCartShopping className="text-4xl" />
                     </NavLink>

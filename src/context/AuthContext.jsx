@@ -1,8 +1,11 @@
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, { createContext, useContext } from "react";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const [cartSize, setCartSize] = React.useState(
+    JSON.parse(localStorage.getItem("cart")).length || 0
+  );
   const login = async (username, password) => {
     try {
       const res = await fetch("https://dummyjson.com/auth/login", {
@@ -33,10 +36,34 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("cart");
+  };
+
+  const storeCart = async () => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const id = user.id;
+      const res = await fetch(`https://dummyjson.com/carts/user/${id}`);
+      if (!res.ok) throw new Error("Error fetching cart");
+      const data = await res.json();
+      console.log(data.carts[0].products);
+      if (data) {
+        const cartId = [];
+        data.carts[0].products.forEach((product) => {
+          cartId.push(product.id);
+        });
+        setCartSize(cartId.length);
+        localStorage.setItem("cart", JSON.stringify(cartId));
+      }
+    } catch (error) {
+      console.log("Error fetching cart", error.message);
+    }
   };
 
   return (
-    <AuthContext.Provider value={{ login, logout }}>
+    <AuthContext.Provider
+      value={{ login, logout, storeCart, cartSize, setCartSize }}
+    >
       {children}
     </AuthContext.Provider>
   );

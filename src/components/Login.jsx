@@ -7,7 +7,7 @@ export default function Login() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, storeCart } = useAuth();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -21,6 +21,7 @@ export default function Login() {
     if (!(username && password))
       return alert("Please enter username and password");
     const token = await login(username, password);
+    await storeCart();
     console.log(token);
     if (token) {
       navigate("/");

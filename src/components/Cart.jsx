@@ -1,9 +1,17 @@
 import React from "react";
 import CartProduct from "./CartProduct";
 export default function Cart() {
-  const cartProducts = [1, 2, 3, 4, 5, 6];
+  const [cartProducts, setCartProducts] = React.useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
   const cartProductsList = cartProducts.map((product) => {
-    return <CartProduct productId={product} key={product} />;
+    return (
+      <CartProduct
+        productId={product}
+        key={product}
+        setCartProducts={setCartProducts}
+      />
+    );
   });
   return (
     <>
