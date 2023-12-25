@@ -30,7 +30,7 @@ export default function Home() {
             <div className="font-semibold">${filter}</div>
           </div>
         </div>
-        <div className="pt-5 pb-16 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-y-10 justify-items-center">
+        <div className="pt-5 pb-20 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-y-10 justify-items-center">
           {productsList}
         </div>
       </div>

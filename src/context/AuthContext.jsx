@@ -4,7 +4,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [cartSize, setCartSize] = React.useState(
-    JSON.parse(localStorage.getItem("cart")).length || 0
+    JSON.parse(localStorage.getItem("cart"))?.length || 0
   );
   const login = async (username, password) => {
     try {

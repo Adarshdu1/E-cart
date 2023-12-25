@@ -13,8 +13,10 @@ export default function Login() {
     const token = localStorage.getItem("token");
     if (token) {
       navigate("/");
+    } else {
+      alert("For demo account use Username:atuny0 and Password:9uQFF1Lh");
     }
-  });
+  }, []);
 
   const verifyLogin = async (e) => {
     e.preventDefault();
