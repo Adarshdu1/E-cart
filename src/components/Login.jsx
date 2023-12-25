@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const navigate = useNavigate();
-  const verifyLogin = (e) => {
+  const { login } = useAuth();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/");
+    }
+  });
+
+  const verifyLogin = async (e) => {
     e.preventDefault();
-    navigate("/");
+    if (!(username && password))
+      return alert("Please enter username and password");
+    const token = await login(username, password);
+    console.log(token);
+    if (token) {
+      navigate("/");
+    }
   };
   return (
     <>
@@ -20,6 +39,7 @@ export default function Login() {
                 id="username"
                 placeholder="Username"
                 className="border-0 sm:text-xl border-b-2 mb-5 p-1  focus:outline-none sm:w-9/12 w-full "
+                onChange={(e) => setUsername(e.target.value)}
               />
 
               <input
@@ -28,6 +48,7 @@ export default function Login() {
                 id="password"
                 placeholder="Password"
                 className="border-0 border-b-2 sm:text-xl sm:w-9/12 w-full p-1 mb-5 focus:outline-none"
+                onChange={(e) => setPassword(e.target.value)}
               />
 
               <button
