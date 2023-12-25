@@ -1,9 +1,8 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState({});
   const login = async (username, password) => {
     try {
       const res = await fetch("https://dummyjson.com/auth/login", {
@@ -18,9 +17,10 @@ const AuthProvider = ({ children }) => {
       const data = await res.json();
       console.log(data);
       if (data) {
-        setUser(data);
-        localStorage.setItem("token", data.token);
-        return data.token;
+        const { token, ...userData } = data;
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(userData));
+        return token;
       } else {
         alert("Invalid username or password");
         throw new Error(data.message);
@@ -31,12 +31,12 @@ const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    setUser({});
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ login, logout }}>
       {children}
     </AuthContext.Provider>
   );
