@@ -128,7 +128,7 @@ export default function ProductCard() {
         <div className="flex justify-center space-x-10 pb-16">
           <button
             type="submit"
-            className="bg-slate-500 p-2 rounded-lg text-white hover:bg-slate-600 active:bg-slate-700 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="bg-slate-500 p-2 rounded-lg text-white hover:bg-slate-600 active:bg-slate-700 disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
             onClick={handleAddToCart}
             disabled={!stock}
           >
@@ -136,7 +136,7 @@ export default function ProductCard() {
           </button>
           <button
             type="submit"
-            className="bg-blue-500 p-2 rounded-lg text-white hover:bg-blue-600 active:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="bg-blue-500 p-2 rounded-lg text-white hover:bg-blue-600 active:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
             onClick={handlePurchase}
             disabled={!stock}
           >

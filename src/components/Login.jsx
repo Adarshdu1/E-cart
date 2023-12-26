@@ -14,7 +14,7 @@ export default function Login() {
     if (token) {
       navigate("/");
     } else {
-      alert("For demo account use Username:atuny0 and Password:9uQFF1Lh");
+      alert("DEMO ACCOUNT: Username - atuny0 and Password - 9uQFF1Lh");
     }
   }, []);
 

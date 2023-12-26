@@ -56,7 +56,7 @@ export default function CartProduct({ productId, setCartProducts }) {
               <div
                 className={`${
                   stock ? "text-green-700" : "text-red-500"
-                } font-semibold`}
+                } font-semibold whitespace-nowrap`}
               >
                 {stock ? "In Stock" : "Out of Stock"}
               </div>
@@ -75,14 +75,14 @@ export default function CartProduct({ productId, setCartProducts }) {
           <div className="flex  justify-evenly p-2 ">
             <button
               type="submit"
-              className="bg-red-500 p-2 rounded-lg text-white hover:bg-red-600 active:bg-red-700"
+              className="bg-red-500 p-2 rounded-lg text-white hover:bg-red-600 whitespace-nowrap active:bg-red-700"
               onClick={handleRemove}
             >
               Remove from Cart{" "}
             </button>
             <button
               type="submit"
-              className="bg-blue-500 p-2 rounded-lg text-white hover:bg-blue-600 active:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="bg-blue-500 p-2 rounded-lg text-white hover:bg-blue-600 active:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
               onClick={handlePurchase}
               disabled={!stock}
             >
