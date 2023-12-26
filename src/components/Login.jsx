@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useProduct } from "../context/ProductContext";
 
 export default function Login() {
   const [username, setUsername] = React.useState("");
@@ -9,9 +10,16 @@ export default function Login() {
   const navigate = useNavigate();
   const { login, storeCart } = useAuth();
 
+  const { fetchAllProduct } = useProduct();
+
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const fetchProduct = async () => {
+      await fetchAllProduct();
+    };
+
     if (token) {
+      fetchProduct();
       navigate("/");
     } else {
       alert("DEMO ACCOUNT: Username - atuny0 and Password - 9uQFF1Lh");
@@ -26,6 +34,7 @@ export default function Login() {
     await storeCart();
     console.log(token);
     if (token) {
+      await fetchAllProduct();
       navigate("/");
     }
   };
