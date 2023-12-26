@@ -34,7 +34,7 @@ export default function Login() {
     setLoading(true);
     const token = await login(username, password);
     await storeCart();
-    console.log(token);
+    // console.log(token);
     if (token) {
       await fetchAllProduct();
       navigate("/");
@@ -47,7 +47,7 @@ export default function Login() {
     setLoading(true);
     const token = await login("atuny0", "9uQFF1Lh");
     await storeCart();
-    console.log(token);
+    // console.log(token);
     if (token) {
       await fetchAllProduct();
       navigate("/");

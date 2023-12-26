@@ -32,7 +32,7 @@ export default function CartProduct({ productId, setCartProducts }) {
         if (!res.ok) throw new Error("Error fetching product");
         const data = await res.json();
         setProduct(data);
-        console.log(data);
+        // console.log(data);
         setStock(data.stock);
       } catch (error) {
         console.log("Error fetching product", error.message);

@@ -8,7 +8,7 @@ export default function HomeProduct({ product }) {
     e.stopPropagation();
     e.preventDefault();
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    console.log(cart);
+    // console.log(cart);
     let alreadyInCart = false;
     for (let i = 0; i < cart.length; i++) {
       if (cart[i] == product.id) {

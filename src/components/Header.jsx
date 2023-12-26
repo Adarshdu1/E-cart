@@ -23,7 +23,7 @@ function Header() {
       setFilteredData([]);
       return;
     }
-    console.log(typeof allProduct);
+    // console.log(typeof allProduct);
     const data = allProduct?.filter((item) => {
       return item.title.toLowerCase().includes(searchItem.toLowerCase());
     }, []);

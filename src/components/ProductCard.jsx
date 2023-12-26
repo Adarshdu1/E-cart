@@ -21,7 +21,7 @@ export default function ProductCard() {
     e.stopPropagation();
     e.preventDefault();
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    console.log(cart);
+    // console.log(cart);
     let alreadyInCart = false;
     for (let i = 0; i < cart.length; i++) {
       if (cart[i] == productId) {
@@ -54,7 +54,7 @@ export default function ProductCard() {
         const data = await res.json();
         setProduct(data);
         setImages(data.images);
-        console.log(data.images);
+        // console.log(data.images);
         setStock(data.stock);
       } catch (error) {
         console.log("Error fetching product", error.message);

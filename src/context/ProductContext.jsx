@@ -15,7 +15,7 @@ const ProductProvider = ({ children }) => {
 
       const data = await res.json();
 
-      console.log(data.products);
+      //   console.log(data.products);
       setAllProduct(data.products);
       localStorage.setItem("Products", JSON.stringify(data.products));
     } catch (error) {

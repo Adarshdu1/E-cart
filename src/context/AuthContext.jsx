@@ -16,9 +16,9 @@ const AuthProvider = ({ children }) => {
         body: JSON.stringify({ username, password }),
       });
       if (!res.ok) return alert("Invalid username or password");
-      console.log("Hello");
+      // console.log("Hello");
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       if (data) {
         const { token, ...userData } = data;
         localStorage.setItem("token", token);
@@ -47,7 +47,7 @@ const AuthProvider = ({ children }) => {
       const res = await fetch(`https://dummyjson.com/carts/user/${id}`);
       if (!res.ok) throw new Error("Error fetching cart");
       const data = await res.json();
-      console.log(data.carts[0].products);
+      // console.log(data.carts[0].products);
       if (data) {
         const cartId = [];
         data.carts[0].products.forEach((product) => {
