@@ -8,6 +8,7 @@ import Layout from "./Layout";
 import ProtectedRoute from "./ProtectedRoute";
 import Cart from "../components/Cart";
 import ProductCard from "../components/ProductCard";
+import NotFound from "../components/NotFound";
 
 export default function AllRoutes() {
   return (
@@ -25,6 +26,7 @@ export default function AllRoutes() {
         />
       </Route>
       <Route path="/login" element={<Login />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

@@ -16,6 +16,7 @@ export default function CartProduct({ productId, setCartProducts }) {
     localStorage.setItem("cart", JSON.stringify(newCart));
     setCartProducts(newCart);
     setCartSize(newCart.length);
+    alert("Removed from Cart");
   };
 
   const handlePurchase = (e) => {

@@ -141,7 +141,7 @@ function Header() {
               <div
                 className={`${
                   !isOpen ? "hidden" : "block"
-                } absolute top-[67px] right-0 bg-gray-200 shadow-lg  rounded-bl-lg w-1/4 py-2`}
+                } absolute top-[67px] right-0 bg-gray-200 shadow-lg  rounded-bl-lg w-1/4 py-2 z-50`}
                 onClick={(prev) => {
                   setIsOpen(!prev);
                 }}
