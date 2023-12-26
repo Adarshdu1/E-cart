@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomeProduct from "./HomeProduct";
 import { Link } from "react-router-dom";
+import { useProduct } from "../context/ProductContext";
 
 export default function Home() {
-  const products = [1, 2, 3, 4, 5, 6];
-  const [filter, setFilter] = React.useState(1000);
-  const productsList = products.map((product) => {
+  const [filter, setFilter] = React.useState(10000);
+  const [filteredData, setFilteredData] = React.useState([]);
+
+  const { allProduct } = useProduct();
+  const handleFilter = () => {
+    const data = allProduct?.filter((item) => {
+      return item.price <= filter;
+    }, []);
+    setFilteredData(data);
+  };
+
+  useEffect(() => {
+    handleFilter();
+  }, [filter]);
+
+  const productsList = filteredData?.map((product) => {
     return (
-      <Link to={`/product/${product}`} key={product}>
-        <HomeProduct />
+      <Link to={`/product/${product.id}`} key={product.id}>
+        <HomeProduct product={product} />
       </Link>
     );
   });
